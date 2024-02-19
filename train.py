@@ -126,11 +126,13 @@ def main(model_args: ModelArguments, data_args: DataArguments, training_args: Tr
     dataset = dataset.shuffle(seed=42)
 
     acc = evaluate.load("accuracy")
+
     def compute_metrics(eval_pred):
-        labels, predictions = eval_pred
-        #prediction : [0.001, 0.04] ->`1, `predictions: [[0.2,0.1],...]-> [0,1,0,,....]
-        predictions = np.argmax(predictions, axis = -1)
+        predictions, labels = eval_pred
+        # prediction : [0.001, 0.04] ->`1, `predictions: [[0.2,0.1],...]-> [0,1,0,,....]
+        predictions = np.argmax(predictions, axis=-1)
         return acc.compute(predictions=predictions, references=labels)
+    
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -143,7 +145,8 @@ def main(model_args: ModelArguments, data_args: DataArguments, training_args: Tr
     if training_args.do_train:
         trainer.train()
     elif training_args.do_eval:
-        trainer.evaluate()
+        result = trainer.evaluate()
+        print(result)
 
 
 
