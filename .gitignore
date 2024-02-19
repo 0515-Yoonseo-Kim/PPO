@@ -1,2 +1,4 @@
+.gitignore
 models
 script.txt
+nohup.out
