@@ -1,9 +1,0 @@
-.gitignore
-
-models
-script.txt
-nohup.out
-eval_result
-vaiv_model
-monologg
-upload.py
