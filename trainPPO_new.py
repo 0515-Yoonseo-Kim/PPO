@@ -228,10 +228,3 @@ def main(
 if __name__ == "__main__":
     parser = HfArgumentParser((DataArguments, ModelArguments, TrainingArguments, GenerationParams, RewardArguments))
     main(*parser.parse_args_into_dataclasses())
-    """
-    nohup python train.py --output_dir=runs --data_auth_token=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 --per_device_train_batch_size=4 --per_device_eval_batch_size=4 --eval_accumulation_steps=1 --logging_strategy=steps --logging_steps=3000 --save_strategy=steps --save_steps=3000 --evaluation_strategy=steps --eval_steps=3000 --num_train_epochs=1 &
-    ?model_name_or_path=runs/checkpoint-3000
-    """
-    """
-nohup python trainPPO_new.py --output_dir=PPO_result --data_auth_token=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 --per_device_train_batch_size=4 --logging_strategy=steps --logging_steps=4000 --save_strategy=steps --save_steps=8000 --num_train_epoch=1 --reward_name_or_path=./vaiv_model/checkpoint-80000 --do_train &
-    """
